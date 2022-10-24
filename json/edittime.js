@@ -191,6 +191,8 @@ AddAction(330, 0, "Delete all references", "Shared Reference", "Delete all refer
 // exp_name,			// the expression name after the dot, e.g. "foo" for "myobject.foo" - also the runtime function name
 // description);		// description in expressions panel
 
+const RETURN_VALUE_EXPLANATION =  " (Construct 2 only supports strings and numbers, so false -> 0, true -> 1, object -> \"object\", array -> \"array\". the last two will trigger a warning in the console)";
+
 // example
 expKeyPath();
 AddExpression(0, ef_deprecated | ef_return_number | ef_variadic_parameters, "Length", "Getter", "Length", "Return the length of the array at the property (0 if empty or not array).");
@@ -199,7 +201,9 @@ expKeyPath();
 AddExpression(1, ef_return_number | ef_variadic_parameters, "Size", "Getter", "Size", "Return the size of the array/object at the property (-1 if not an array/object).");
 
 expKeyPath();
-AddExpression(10, ef_return_any | ef_variadic_parameters, "Value", "Getter", "Value", "Return the value at the property (Construct2 only supports strings and numbers, so false -> 0, true -> 1, object -> \"object\", array -> \"array\". the last two will trigger a warning in the console).");
+AddExpression(10, ef_return_any | ef_variadic_parameters, "Value", "Getter", "Value", "Return the value at the property"+ RETURN_VALUE_EXPLANATION +".");
+expKeyPath();
+AddExpression(11, ef_return_any | ef_variadic_parameters, "At", "Getter", "Value", "Return the value at the full path"+ RETURN_VALUE_EXPLANATION +".");
 
 expKeyPath();
 AddExpression(20, ef_deprecated | ef_return_string | ef_variadic_parameters, "ToJson", "JSON", "ToJson", "Return the content of the property as a JSON string.");
@@ -211,7 +215,7 @@ AddExpression(30, ef_return_string | ef_variadic_parameters, "TypeOf", "Getter",
 
 // loops
 AddExpression(100, ef_return_any, "Current Key", "Loop", "CurrentKey", "Get the current property of an object in a for each property loop.");
-AddExpression(110, ef_return_any, "Current Value", "Loop", "CurrentValue", "Get the current value of an object's property in a for each property loop. (Construct2 only supports strings and numbers, so false -> 0, true -> 1, object -> \"object\", array -> \"array\". the last two will trigger a warning in the console).");
+AddExpression(110, ef_return_any, "Current Value", "Loop", "CurrentValue", "Get the current value of an object's property in a for each property loop"+ RETURN_VALUE_EXPLANATION +".");
 
 // //////////////////////////////////////
 ACESDone();
