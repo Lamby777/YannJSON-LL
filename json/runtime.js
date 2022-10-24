@@ -685,10 +685,10 @@ cr.plugins_.JSON = function (runtime) {
 		switch(t) {
 			case "number":
 			case "string":
-				ret.set_any(val);
+				ret.set_any(res);
 				break;
 			case "boolean":
-				ret.set_any((val) ? 1 : 0);
+				ret.set_any((res) ? 1 : 0);
 				break;
 			default:
 				ret.set_any(t);
@@ -719,9 +719,14 @@ cr.plugins_.JSON = function (runtime) {
 
 function resolve(obj, path) {
 	const split = path.split(".");
-	let res = obj;
+	let res = obj.root;
+
+	alert("Object " + JSON.stringify(obj));
 
 	split.forEach((key) => {
 		res = res?.[key];
+		alert("Key "+ key +" returned "+ JSON.stringify(res));
 	});
+
+	return res;
 }
