@@ -721,11 +721,8 @@ function resolve(obj, path) {
 	const split = path.split(".");
 	let res = obj.root;
 
-	alert("Object " + JSON.stringify(obj));
-
 	split.forEach((key) => {
 		res = res?.[key];
-		alert("Key "+ key +" returned "+ JSON.stringify(res));
 	});
 
 	return res;
