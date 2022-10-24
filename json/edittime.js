@@ -69,6 +69,10 @@ function expKeyPath() {
     AddNumberParam("Root", "0 for Root or 1 for Current position");
 }
 
+function resolvePath() {
+    AddStringParam("Path", "Path to resolve a value from");
+}
+
 function path(n) {
     return "<b>{" + n + "}</b>@<i>{...}</i>";
 }
@@ -202,7 +206,7 @@ AddExpression(1, ef_return_number | ef_variadic_parameters, "Size", "Getter", "S
 
 expKeyPath();
 AddExpression(10, ef_return_any | ef_variadic_parameters, "Value", "Getter", "Value", "Return the value at the property"+ RETURN_VALUE_EXPLANATION +".");
-expKeyPath();
+resolvePath();
 AddExpression(11, ef_return_any | ef_variadic_parameters, "At", "Getter", "Value", "Return the value at the full path"+ RETURN_VALUE_EXPLANATION +".");
 
 expKeyPath();

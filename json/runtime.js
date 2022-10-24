@@ -308,20 +308,12 @@ cr.plugins_.JSON = function (runtime) {
     }
 
     function type(value) {
-        if (value === undefined) {
-            return "undefined";
-        } else if (value === null) {
+        if (value === null) {
             return "null";
-        } else if (value === !! value) {
-            return "boolean";
-        } else if (Object.prototype.toString.call(value) === "[object Number]") {
-            return "number";
-        } else if (Object.prototype.toString.call(value) === "[object String]") {
-            return "string";
         } else if (Object.prototype.toString.call(value) === "[object Array]") {
             return "array";
-        } else if (Object.prototype.toString.call(value) === "[object Object]") {
-            return "object";
+        } else {
+            return typeof value;
         }
     }
 
@@ -685,6 +677,26 @@ cr.plugins_.JSON = function (runtime) {
     };
 
 
+    Exps.prototype.At = function (ret, path) {
+        // skip to here //
+		const res	= resolve(this.data, path);
+		const t		= type(res);
+
+		switch(t) {
+			case "number":
+			case "string":
+				ret.set_any(val);
+				break;
+			case "boolean":
+				ret.set_any((val) ? 1 : 0);
+				break;
+			default:
+				ret.set_any(t);
+
+		}
+    };
+
+
     Exps.prototype.CurrentKey = function (ret) {
         ret.set_string(this.curKey);
     };
@@ -704,3 +716,12 @@ cr.plugins_.JSON = function (runtime) {
     pluginProto.exps = new Exps();
 
 }());
+
+function resolve(obj, path) {
+	const split = path.split(".");
+	let res = obj;
+
+	split.forEach((key) => {
+		res = res?.[key];
+	});
+}
