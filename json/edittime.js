@@ -206,8 +206,10 @@ AddExpression(1, ef_return_number | ef_variadic_parameters, "Size", "Getter", "S
 
 expKeyPath();
 AddExpression(10, ef_return_any | ef_variadic_parameters, "Value", "Getter", "Value", "Return the value at the property"+ RETURN_VALUE_EXPLANATION +".");
-resolvePath();
+expKeyPath();
+
 AddExpression(11, ef_return_any | ef_variadic_parameters, "At", "Getter", "Value", "Return the value at the full path"+ RETURN_VALUE_EXPLANATION +".");
+resolvePath();
 
 expKeyPath();
 AddExpression(20, ef_deprecated | ef_return_string | ef_variadic_parameters, "ToJson", "JSON", "ToJson", "Return the content of the property as a JSON string.");
